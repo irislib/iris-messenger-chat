@@ -8,7 +8,6 @@ import View from './View';
 import PublicMessage from "../components/PublicMessage";
 import NotificationTools from "iris-lib/src/Notifications";
 import util from "iris-lib/src/util";
-
 const PAGE_SIZE = 10;
 
 export default class Notifications extends View {
@@ -62,7 +61,6 @@ export default class Notifications extends View {
                   </a>
                 </div>
                 ${notification.text || ''}
-                ${notification.target ? html`<${PublicMessage} hash=${notification.target}/>` :''}
                 <div class="below-text">
                   <div class="time">${util.formatDate(new Date(notification.time))}</div><br/>
                 </div>

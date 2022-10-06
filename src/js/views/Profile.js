@@ -10,7 +10,6 @@ import { createRef } from 'preact';
 import CopyButton from '../components/CopyButton';
 import FollowButton from '../components/FollowButton';
 import BlockButton from '../components/BlockButton';
-import MessageFeed from '../components/MessageFeed';
 import Identicon from '../components/Identicon';
 import View from './View';
 import { Link } from 'preact-router/match';
@@ -342,24 +341,7 @@ class Profile extends View {
 
   renderTab() {
     if (this.props.tab === 'replies') {
-      return html`
-        <div class="public-messages-view">
-          <${MessageFeed} scrollElement=${this.scrollElement.current} key="replies${this.props.id}" node=${State.public.user(this.props.id).get('replies')} keyIsMsgHash=${true} />
-        </div>
-      `;
-    } else if (this.props.tab === 'likes') {
-      return html`
-        <div class="public-messages-view">
-          <${MessageFeed} scrollElement=${this.scrollElement.current} key="likes${this.props.id}" node=${State.public.user(this.props.id).get('likes')} keyIsMsgHash=${true}/>
-        </div>
-      `;
-    } else if (this.props.tab === 'media') {
-      return html`
-        <div class="public-messages-view">
-          ${this.isMyProfile ? html`<${FeedMessageForm} index="media" class="hidden-xs" autofocus=${false}/>` : ''}
-          <${MessageFeed} scrollElement=${this.scrollElement.current} key="media${this.props.id}" node=${State.public.user(this.props.id).get('media')}/>
-        </div>
-      `;
+
     } else if (this.props.tab === 'nfts') {
       return html`
         <div class="public-messages-view">
@@ -386,17 +368,6 @@ class Profile extends View {
         </div>
       `;
     }
-      const messageForm = this.isMyProfile ? html`<${FeedMessageForm} class="hidden-xs" autofocus=${false}/>` : '';
-      return html`
-      <div>
-        ${messageForm}
-        <div class="public-messages-view">
-          ${this.getNotification()}
-          <${MessageFeed} scrollElement=${this.scrollElement.current} key="posts${this.props.id}" node=${State.public.user(this.props.id).get('msgs')} />
-        </div>
-      </div>
-      `;
-
   }
 
   onNftImgError(e) {

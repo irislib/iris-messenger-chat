@@ -754,6 +754,7 @@ class Channel {
       if (subscription) { subscription.event = e; }
       if (!this.hasWritePermission(pub)) { return; }
       const decrypted = await Gun.SEA.decrypt(data, (await this.getTheirGroupSecret(pub)));
+      return;
       if (decrypted) {
         callback(typeof decrypted.v !== `undefined` ? decrypted.v : decrypted, key, pub);
       }

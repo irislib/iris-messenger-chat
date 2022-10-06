@@ -1,7 +1,6 @@
 import Helpers from '../../Helpers';
 import { html } from 'htm/preact';
 import { translate as t } from '../../translations/Translation';
-import Torrent from '../../components/Torrent';
 import State from 'iris-lib/src/State';
 import Session from 'iris-lib/src/Session';
 import _ from 'lodash';
@@ -171,7 +170,6 @@ class ChatMessageForm extends MessageForm {
     if (!this.props.hashtag) {
       Helpers.scrollToMessageListBottom();
     }
-    this.setState({torrentId:null});
   }
 
   webPush(msg) {
@@ -200,9 +198,6 @@ class ChatMessageForm extends MessageForm {
       <input name="attachment-input" type="file" class="hidden attachment-input" accept="image/*" multiple onChange=${() => this.openAttachmentsPreview()}/>
       <input onPaste=${e => this.onMsgTextPaste(e)} onInput=${e => this.onMsgTextInput(e)} class="new-msg" type="text" placeholder="${t('type_a_message')}" autocomplete="off" autocorrect="off" autocapitalize="sentences" spellcheck="off"/>
       ${submitButton}
-      <div id="webtorrent">
-          ${this.state.torrentId ? html`<${Torrent} preview=${true} torrentId=${this.state.torrentId}/>` : ''}
-      </div>
     </form>`;
   }
 

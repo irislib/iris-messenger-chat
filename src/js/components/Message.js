@@ -2,7 +2,6 @@ import Component from '../BaseComponent';
 import Helpers from '../Helpers';
 import { html } from 'htm/preact';
 import Session from 'iris-lib/src/Session';
-import Torrent from './Torrent';
 import Autolinker from 'autolinker';
 import $ from 'jquery';
 import State from 'iris-lib/src/State';
@@ -169,9 +168,6 @@ class Message extends Component {
           <div class="msg-sender">
             ${name && this.props.showName && html`<small onclick=${() => this.onNameClick()} class="msgSenderName" style="color: ${color}">${name}</small>`}
           </div>
-          ${this.props.torrentId ? html`
-            <${Torrent} torrentId=${this.props.torrentId}/>
-          `:''}
           ${this.props.attachments && this.props.attachments.map(a =>
             html`<div class="img-container"><img src=${a.data} onclick=${e => { this.openAttachmentsGallery(e); }}/></div>` // TODO: escape a.data
           )}

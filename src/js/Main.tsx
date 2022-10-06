@@ -1,6 +1,6 @@
 import Component from './BaseComponent';
 import { Router, RouterOnChangeArgs, CustomHistory } from 'preact-router';
-import AsyncRoute from 'preact-async-route';
+
 import { createHashHistory } from 'history';
 import {Helmet} from "react-helmet";
 import { translationLoaded } from "./translations/Translation";
@@ -18,13 +18,11 @@ import Profile from './views/Profile';
 import Group from './views/Group';
 import Message from './views/Message';
 import Follows from './views/Follows';
-import Feed from './views/Feed';
+
 import About from './views/About';
 import Contacts from './views/Contacts';
 import Torrent from './views/Torrent';
 
-import Menu from './components/Menu';
-import VideoCall from './components/VideoCall';
 import MediaPlayer from './components/MediaPlayer';
 import Footer from './components/Footer';
 
@@ -123,7 +121,6 @@ class Main extends Component<Props,ReactState> {
         </div>
         ) : null}
         <section className={`main ${isDesktopNonMac ? 'desktop-non-mac' : ''} ${s.showMenu ? 'menu-visible-xs' : ''}`} style="flex-direction: row;">
-          <Menu/>
           <Helmet titleTemplate={titleTemplate} defaultTitle={defaultTitle}>
             <title>{title}</title>
             <meta name="description" content="Social Networking Freedom" />
@@ -137,19 +134,13 @@ class Main extends Component<Props,ReactState> {
           <div className="overlay" onClick={() => this.onClickOverlay()}></div>
           <div className="view-area">
             <Router history={history as CustomHistory} onChange={e => this.handleRoute(e)}>
-              <Feed path="/"/>
-              <Feed path="/feed"/>
               <Hashtags path="/hashtag"/>
-              <Feed path="/hashtag/:hashtag+"/>
-              <Feed path="/search/:term?/:type?"/>
-              <Feed path="/media" index="media" thumbnails/>
               <Login path="/login"/>
               <Notifications path="/notifications"/>
               <Chat path="/chat/hashtag/:hashtag?"/>
               <Chat path="/chat/:id?"/>
               <Chat path="/chat/new/:id"/>
-              <Message path="/post/:hash+"/>
-              <Torrent path="/torrent/:id+"/>
+              <Chat path="/"/>
               <About path="/about"/>
               <Settings path="/settings/:page?"/>
               <LogoutConfirmation path="/logout"/>
@@ -160,41 +151,13 @@ class Main extends Component<Props,ReactState> {
               <Profile path="/nfts/:id+" tab="nfts"/>
               <Group path="/group/:id+"/>
               {/* Lazy load stuff that is used less often */}
-              <AsyncRoute
-                 path="/store/:store?"
-                getComponent={() => import('./views/Store').then(module => module.default)}
-              />
-              <AsyncRoute
-                 path="/checkout/:store?"
-                getComponent={() => import('./views/Checkout').then(module => module.default)}
-              />
-              <AsyncRoute
-                 path="/product/:product/:store"
-                getComponent={() => import('./views/Product').then(module => module.default)}
-              />
-              <AsyncRoute
-                 path="/product/new"
-                  store={Session.getPubKey()}
-                getComponent={() => import('./views/Product').then(module => module.default)}
-              />
-              <AsyncRoute
-                 path="/explorer/:node"
-                getComponent={() => import('./views/Explorer').then(module => module.default)}
-              />
-              <AsyncRoute
-                 path="/explorer"
-                  store={Session.getPubKey()}
-                getComponent={() => import('./views/Explorer').then(module => module.default)}
-              />
               <Follows path="/follows/:id"/>
               <Follows followers={true} path="/followers/:id"/>
               <Contacts path="/contacts"/>
             </Router>
           </div>
         </section>
-        <MediaPlayer/>
         <Footer/>
-        <VideoCall/>
       </div>
     );
   }

@@ -10,8 +10,6 @@ import Session from 'iris-lib/src/Session';
 import $ from 'jquery';
 import {Helmet} from 'react-helmet';
 import Component from '../../BaseComponent';
-import MessageFeed from '../../components/MessageFeed';
-import OnboardingNotification from "../../components/OnboardingNotification";
 
 const caretDownSvg = html`
 <svg x="0px" y="0px"
@@ -115,8 +113,7 @@ export default class ChatMain extends Component {
       <${Helmet}><title>${this.chat && this.chat.name || 'Messages'}</title><//>
       <div id="chat-main">
         <div class="main-view public-messages-view" id="message-view" ref=${this.hashtagChatRef}>
-          <${MessageFeed} reverse=${true} key=${this.props.hashtag} scrollElement=${this.hashtagChatRef.current} group="everyone" path="hashtags/${this.props.hashtag}"/>
-          <${OnboardingNotification} />
+          
           <div id="attachment-preview" class="attachment-preview" style="display:none"></div>
         </div>
         
