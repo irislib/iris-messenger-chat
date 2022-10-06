@@ -16,19 +16,14 @@ import Hashtags from './views/Hashtags';
 import Login from './views/Login';
 import Profile from './views/Profile';
 import Group from './views/Group';
-import Message from './views/Message';
 import Follows from './views/Follows';
 
 import About from './views/About';
 import Contacts from './views/Contacts';
-import Torrent from './views/Torrent';
 
-import MediaPlayer from './components/MediaPlayer';
 import Footer from './components/Footer';
 
 import State from 'iris-lib/src/State';
-import Session from 'iris-lib/src/Session';
-
 import '../css/style.css';
 import '../css/cropper.min.css';
 
