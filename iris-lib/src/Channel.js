@@ -753,11 +753,13 @@ class Channel {
     State.public.user(pub).get(`chats`).get(theirSecretUuid).get(key).on(async (data, a, b, e) => {
       if (subscription) { subscription.event = e; }
       if (!this.hasWritePermission(pub)) { return; }
-      const decrypted = await Gun.SEA.decrypt(data, (await this.getTheirGroupSecret(pub)));
-      return;
+      
+      //Group Chat causes memory leak. Calles to many gun request/callbacks
+      //const decrypted = await Gun.SEA.decrypt(data, (await this.getTheirGroupSecret(pub)));
+      /*
       if (decrypted) {
         callback(typeof decrypted.v !== `undefined` ? decrypted.v : decrypted, key, pub);
-      }
+      }*/
     });
   }
 

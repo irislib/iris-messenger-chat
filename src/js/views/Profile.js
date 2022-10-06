@@ -3,7 +3,6 @@ import { html } from 'htm/preact';
 import {translate as t} from '../translations/Translation';
 import State from 'iris-lib/src/State';
 import Session from 'iris-lib/src/Session';
-import FeedMessageForm from '../components/FeedMessageForm';
 import ProfilePhotoPicker from '../components/ProfilePhotoPicker';
 import { route } from 'preact-router';
 import { createRef } from 'preact';
@@ -12,7 +11,6 @@ import FollowButton from '../components/FollowButton';
 import BlockButton from '../components/BlockButton';
 import Identicon from '../components/Identicon';
 import View from './View';
-import { Link } from 'preact-router/match';
 import $ from 'jquery';
 import QRCode from '../lib/qrcode.min';
 import {Helmet} from "react-helmet";
@@ -278,17 +276,6 @@ class Profile extends View {
     `;
   }
 
-  renderTabs() {
-    return html`
-    <div class="tabs">
-      <${Link} activeClassName="active" href="/profile/${this.props.id}">${t('posts')} ${this.state.noPosts ? '(0)' : ''}<//>
-      <${Link} activeClassName="active" href="/replies/${this.props.id}">${t('replies')} ${this.state.noReplies ? '(0)' : ''}<//>
-      <${Link} activeClassName="active" href="/likes/${this.props.id}">${t('likes')} ${this.state.noLikes ? '(0)' : ''}<//>
-      <${Link} activeClassName="active" href="/media/${this.props.id}">${t('media')} ${this.state.noMedia ? '(0)' : ''}<//>
-    </div>
-    `;
-  }
-
   useAsPfp(nft, e) {
     e.preventDefault();
     let src = this.getSrcForNft(nft, false);
@@ -389,7 +376,6 @@ class Profile extends View {
             <meta property="og:description" content=${description} />
         <//>
         ${this.renderDetails()}
-        ${this.state.blocked ? '' : this.renderTabs()}
         ${this.state.blocked ? '' : this.renderTab()}
       </div>
     `;

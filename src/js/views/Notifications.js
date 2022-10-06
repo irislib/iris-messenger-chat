@@ -5,7 +5,6 @@ import Button from '../components/basic/Button';
 import {translate as t} from '../translations/Translation';
 import Name from '../components/Name';
 import View from './View';
-import PublicMessage from "../components/PublicMessage";
 import NotificationTools from "iris-lib/src/Notifications";
 import util from "iris-lib/src/util";
 const PAGE_SIZE = 10;
