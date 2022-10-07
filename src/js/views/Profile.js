@@ -21,6 +21,7 @@ import Web3 from 'web3';
 import styled from 'styled-components';
 import Channel from 'iris-lib/src/Channel';
 import Attribute from 'iris-lib/src/Attribute';
+import NotificationsComponent from '../components/NotificationsComponent';
 
 const ImageGrid = styled.div`
   display: grid;
@@ -365,20 +366,21 @@ class Profile extends View {
     const title = this.state.name || 'Profile';
     const ogTitle = `${title} | Iris`;
     const description = `Latest posts by ${this.state.name || 'user'}. ${this.state.about || ''}`;
-    return html`
+    return (
       <div class="content">
-        <${Helmet}>
-            <title>${title}</title>
-            <meta name="description" content=${description} />
+        <Helmet>
+            <title>{title}</title>
+            <meta name="description" content={description} />
             <meta property="og:type" content="profile" />
-            ${this.state.ogImageUrl ? html`<meta property="og:image" content=${this.state.ogImageUrl} />` : ''}
-            <meta property="og:title" content=${ogTitle} />
-            <meta property="og:description" content=${description} />
-        <//>
-        ${this.renderDetails()}
-        ${this.state.blocked ? '' : this.renderTab()}
+            {this.state.ogImageUrl ? html`<meta property="og:image" content=${this.state.ogImageUrl} />` : ''}
+            <meta property="og:title" content={ogTitle} />
+            <meta property="og:description" content={description} />
+        </Helmet>
+        {this.renderDetails()}
+        {this.isMyProfile? <div style="padding: 15px"> <NotificationsComponent /> </div> : ''}
+        {this.state.blocked ? '' : this.renderTab()}
       </div>
-    `;
+      );
   }
 
   async getNfts(address) {

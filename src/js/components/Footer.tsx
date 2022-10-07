@@ -43,12 +43,10 @@ class Footer extends Component<Props, State> {
     return (
         <footer class="visible-xs-flex nav footer">
           <div class="header-content" onClick={() => State.local.get('scrollUp').put(true)}>
-            <a href="/" class={`btn ${activeRoute === '/' ? 'active' : ''}`}>{Icons.home}</a>
             <a href="/chat" class={`btn ${activeRoute.indexOf('/chat') === 0 ? 'active' : ''}`}>
               {this.state.unseenMsgsTotal ? <span class="unseen unseen-total">{this.state.unseenMsgsTotal}</span>: ''}
               {Icons.chat}
             </a>
-            <a href="/post/new" class={`btn ${activeRoute === '/post/new' ? 'active' : ''}`}>{plusIcon}</a>
             <a href="/contacts" class={`btn ${activeRoute === '/contacts' ? 'active' : ''}`}>{Icons.user}</a>
             <a href={`/profile/${key}`} class={`${activeRoute === `/profile/${  key}` ? 'active' : ''} my-profile`}>
               <Identicon str={key} width={34} />

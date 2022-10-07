@@ -41,8 +41,11 @@ export default class SettingsMenu extends Component{
           );
         }
       )}
+      <a href="#"  onClick={() => route(`/`)} >
+              <span class="text">Back</span>
+            </a>
       </div>
-    </>  
+    </>
     ); 
   }
 }

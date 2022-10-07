@@ -1,5 +1,4 @@
 import Component from '../BaseComponent';
-import Helpers from '../Helpers';
 import { html } from 'htm/preact';
 import { translate as t } from '../translations/Translation';
 import State from 'iris-lib/src/State';
@@ -137,13 +136,7 @@ class Header extends Component {
       </div>
       ` : ''}
       <div class="header-content">
-        <div class="mobile-search-hidden ${this.state.showMobileSearch ? 'hidden-xs':''}">
-          ${Helpers.isElectron || chatting ? '' : html`
-            <a href="/" onClick=${e => this.onLogoClick(e)} class="visible-xs-flex logo">
-              <div class="mobile-menu-icon">${Icons.menu}</div>
-            </a>
-          `}
-        </div>
+        
         ${chatting ? '' : html`
           <a class="mobile-search-visible ${this.state.showMobileSearch ? '' : 'hidden-xs'}" href="" onClick=${e => {
             e.preventDefault();
@@ -152,6 +145,15 @@ class Header extends Component {
             <span class="visible-xs-inline-block">${Icons.backArrow}</span>
           </a>
         `}
+        ${
+          window.innerWidth > 624 ? html`
+          <a href="/" style="margin-right: 15px;">
+            <small>
+              <span class="icon">${Icons.home}</span>
+            </small>
+          </a>`
+          : ''
+        }
         <a href="/settings/peer" class="connected-peers tooltip mobile-search-hidden ${this.state.showMobileSearch ? 'hidden-xs' : ''} ${peerCount ? 'connected' : ''}">
           <span class="tooltiptext">${t('connected_peers')}</span>
           <small>
