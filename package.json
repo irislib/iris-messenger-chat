@@ -1,6 +1,6 @@
 {
   "name": "iris-messenger",
-  "version": "2.3.3.1",
+  "version": "2.3.3.9.9",
   "license": "MIT",
   "scripts": {
     "build": "preact build --no-prerender",

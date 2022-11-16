@@ -50,11 +50,11 @@ class ChatListItem extends Component {
     if (chat.id === (Session.getKey() || {}).pub) {
       name = html`📝 <b>${t('note_to_self')}</b>`;
     }
-
+    
     let iconEl = chat.photo ?
       html`<div class="identicon-container"><img src="${chat.photo}" class="round-borders" height=49 width=49 alt=""/></div>` :
       html`<${Identicon} str=${chat.id} width=49/>`;
-
+      
     const latestEl = chat.isTyping || !chat.latest ? '' : html`<small class="latest">
       ${chat.latest.selfAuthored && seenIndicator}
       ${chat.latest.text}
