@@ -1724,7 +1724,37 @@ small, .text-muted {
 .chat-item.new svg,.chat-new-item svg{
   color: var(--small-text-color);
 }
-
+.tmpprofilephoto{
+  height: 40px;
+  width: 40px;
+  background-color: var(--main-color);
+  border-radius: 50%;
+  display: inline-block;
+}
+.tmpMsgSenderName{
+  height: 20px;
+  width: 100px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 15px;
+}
+.tmpimg{
+  height: 200px;
+  width: 200px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  display: inline-block;
+}
+.tmptext{
+  height: 20px;
+  width: 300px;
+  background-color: var(--main-color);
+  border-radius: 10px;
+  display: inline-block;
+  margin-left: 15px;
+  margin-bottom: 5px;
+}
 #new-chat input {
   width: 200px;
 }
